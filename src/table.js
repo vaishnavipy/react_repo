@@ -19,9 +19,10 @@ return (
 
 function TableBody(props){
 const characters = props.characterData.map(function(e,i){
-return (<tr>
+return (<tr key={i}>
         <td>{e.name}</td>
         <td>{e.job}</td>
+        <button onClick={()=>props.removeCharacter(i)}>Delete</button>
         </tr>)
 
 
@@ -43,12 +44,13 @@ constructor(props){
 }
 
 render(){
-    const {characterData} = this.props;
+    const {characterData,removeCharacter} = this.props;
+    
 return (
     <div>
         <table id="customers">
             <TableHead />
-            <TableBody characterData={characterData}/>
+            <TableBody characterData={characterData} removeCharacter={removeCharacter}/>
         </table>
     </div>
 )
