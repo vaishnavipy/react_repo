@@ -6,7 +6,7 @@ import Form from './form'
 
 class App extends Component {
   state={
-    characters : []
+    characters: []
     
   }
   removeCharacter =(index) =>{
