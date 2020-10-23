@@ -14,17 +14,23 @@ this.setState({[name]:value})
 
 }
 
+submitForm=()=>{
+this.props.handleSubmit(this.state);
+this.setState({name:'',job:''})
+
+}
+
 
 render(){
-    const {handleSubmit} = this.props;
-    const {name,job} = this.state;
+   
+  
      return(
         <div>
             <label for="name">Name</label>
             <input type="text" name="name" id="name" onChange={this.handleChange} value={this.state.name}></input>
             <label for="job">Job</label>
             <input id="job" name="job" onChange={this.handleChange} value={this.state.job}></input>
-            <button type="submit" onClick={()=>handleSubmit(this.state)}>Submit</button>
+            <button type="submit" onClick={this.submitForm}>Submit</button>
         </div>
     )
 }
