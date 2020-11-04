@@ -4,47 +4,32 @@ import './index.css'
 
 //This App pulls data for the wikipeadi API and renders it as an unordered List   
 class App extends Component {
-  state={
-    result:[]
+  constructor(props){
+    super(props);
+    this.state={color:"red"}
   }
 
+// This method is called during Mounting,before render. So the state properties are changed here naturally before being rendered. 
+//This method is also called first at state or property update
+/*  static getDerivedStateFromProps(props,state){
 
+    return {color:props.favcolor}
+  } */
 
-  componentDidMount() {
+  //ComponnentDidMount is truggered in Mounting, after it is rendered
+  componentDidMount=() =>{
 
-    const  url= 'https://en.wikipedia.org/w/api.php?action=opensearch&search=Seona+Dancing&format=json&origin=*';
-
-    fetch(url)
-    .then(response => response.json())
-    .then(data=> {
-      console.log(data)
-      this.setState({result:data})
-
-    })
-
-
-
-
+    setTimeout(()=>{
+      this.setState({color:"white"})
+    },1000)
   }
 
+  render(){
 
-
-
-render(){
-  const {result} = this.state;
-  //console.log(result)
-  const my_list = result.map(function(e,i){
-  return <li key={i}>{e}</li>
-  })
-
-  return(
-    <div>
-      <ul>{my_list}</ul>
-    </div>
-  )
-
-}
- 
+    return(<div>
+      <h1>My Favorite Color is:{this.state.color}</h1>
+    </div>)
+  }
 }
 
-ReactDOM.render(<App />, document.getElementById('content'))
+ReactDOM.render(<App favcolor="yellow"/>, document.getElementById('content'))
