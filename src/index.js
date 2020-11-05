@@ -24,10 +24,31 @@ class App extends Component {
     },1000)
   }
 
+  handleClick =()=>{
+    this.setState({color:"color-changed"})
+
+  }
+
+  // This is called when there is an update in state/props , and decides whethere to re-render the DOM based on true or false.
+  // So technically in this program, this method gets called after you  try to chnage the color property with button ckikc , 
+  shouldComponentUpdate(){
+    return true;
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    document.getElementById("div1").innerHTML =
+    "Before the update, the favorite was " + prevState.color;
+  }
+  componentDidUpdate() {
+    document.getElementById("div2").innerHTML =
+    "The updated favorite is " + this.state.color;
+  }
+
   render(){
 
     return(<div>
       <h1>My Favorite Color is:{this.state.color}</h1>
+      <button onClick={this.handleClick}>Change Color</button>
     </div>)
   }
 }
